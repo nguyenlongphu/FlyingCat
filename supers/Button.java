@@ -1,0 +1,71 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package supers;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
+/**
+ *
+ * @author Admin
+ */
+public class Button {
+
+    public int x;
+    public int y;
+    public int width;
+    public int height;
+    public boolean pressed;
+    public BufferedImage image;
+
+    public Button(int x, int y, int width, int height, BufferedImage image) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.image = image;
+    }
+    
+    public static  boolean checkCollision (int mouseX,int mouseY,Button btn)
+    {
+        if(mouseX >= btn.x && mouseX<=btn.x+btn.width && mouseY >=btn.y && mouseY<=btn.y +btn.height)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+    
+    public void render(Graphics g)
+    {
+        if(image !=null)
+        {
+            if(pressed)
+            {
+                g.drawImage(image, x+1, y+1,width -2 ,height-2, null);
+                
+                        
+            }else
+            {
+                g.drawImage(image, x, y, null);
+            }
+        }else
+        {
+            if(pressed)
+            {
+                g.setColor(Color.orange);
+                g.drawRect(x+1,y+1, width-2, height-2);
+                
+            }else
+            {
+                g.setColor(Color.magenta);
+                g.drawRect(x, y, width, height);
+            }
+        }
+    }
+
+}
